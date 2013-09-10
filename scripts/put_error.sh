@@ -6,8 +6,8 @@
 ## On           June 29 2011 at 06:53 PM
 
 function put_error() {
-    echo -en "\033[01;31m"
-    echo $@
-    echo -en "\033[00m"
+    echo -en  >&2 "\033[01;31m"
+    echo  >&2 $@
+    echo -en  >&2 "\033[00m"
     return 0
 }
