@@ -32,29 +32,32 @@ usage_error () {
   echo "So in the case of the given example, it would be"
   echo "     'bd s' or 'bd si'"
 }
-if [ $# -eq 0 ]
-then
-  usage_error
-elif [ $# -eq 1 -a "$1" = "-s" ]
-then
-  usage_error
-else
-  OLDPWD=`pwd`
 
-  if [ "$1" = "-s" ]
-  then
-    NEWPWD=`echo $OLDPWD | sed 's|\(.*/'$2'[^/]*/\).*|\1|'`
-    index=`echo $NEWPWD | awk '{ print index($1,"/'$2'"); }'`
-  else
-    NEWPWD=`echo $OLDPWD | sed 's|\(.*/'$1'/\).*|\1|'`
-    index=`echo $NEWPWD | awk '{ print index($1,"/'$1'/"); }'`
-  fi
-  
-  if [ $index -eq 0 ]
-  then
-    echo "No such occurrence."
-  fi
-  
-  echo $NEWPWD
-  cd "$NEWPWD"
-fi
+db () {
+    if [ $# -eq 0 ]
+    then
+      usage_error
+    elif [ $# -eq 1 -a "$1" = "-s" ]
+    then
+      usage_error
+    else
+      OLDPWD=`pwd`
+
+      if [ "$1" = "-s" ]
+      then
+        NEWPWD=`echo $OLDPWD | sed 's|\(.*/'$2'[^/]*/\).*|\1|'`
+        index=`echo $NEWPWD | awk '{ print index($1,"/'$2'"); }'`
+      else
+        NEWPWD=`echo $OLDPWD | sed 's|\(.*/'$1'/\).*|\1|'`
+        index=`echo $NEWPWD | awk '{ print index($1,"/'$1'/"); }'`
+      fi
+
+      if [ $index -eq 0 ]
+      then
+        echo "No such occurrence."
+      fi
+
+      echo $NEWPWD
+      cd "$NEWPWD"
+    fi
+}
