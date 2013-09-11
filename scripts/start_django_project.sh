@@ -68,7 +68,7 @@ function start_django_project() {
 
     mkvirtualenv $project_name --python=`command -v python2.7`
     workon $project_name
-    pip install django #django-bootstrap-form django-pipeline South akismet cssmin django-js-utils==0.0.5dev pytz==2013d hamlpy PIL MySQL-python johnny-cache
+    pip install django #django-js-utils==0.0.5dev django-bootstrap-form django-pipeline South akismet cssmin pytz==2013d hamlpy PIL MySQL-python johnny-cache
     if [ $? -ne 0 ]; then
        put_error "An error occured when installing python packages."
        return 1
@@ -76,15 +76,19 @@ function start_django_project() {
 
     put_info "Setting up django"
     django-admin.py startproject $project_name
-    cd $dest_path/$project_name/
+    cd $dest_path
+    cp -rf $script_path/${FUNCNAME[0]}/public/ .
+    cd public/httpd
+    find . -type f | xargs sed -i "s/??PROJECT_NAME??/$project_name/g"
 
+    cd ${dest_path}/${project_name}
     mkdir -p locale
 
     cd $project_name
     mkdir -p settings
     mv settings.py settings/commons.py
-    cp $script_path/${FUNCNAME[0]}/settings/*.py settings
-    cp $script_path/${FUNCNAME[0]}/main/*.py .
+    cp ${script_path}/${FUNCNAME[0]}/settings/*.py settings
+    cp ${script_path}/${FUNCNAME[0]}/main/*.py .
     # Update urls.py
     # Enable the admin
     sed -e 's|# from|from|' -e 's|# admin|admin|' -e "s|# url(r'^admin/'|url(r'^admin/'|" urls.py > urls.py.new && mv urls.py.new urls.py
