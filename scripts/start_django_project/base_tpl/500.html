@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block "title" %}500 - Internal server error{% endblock %}
+
+{% block "local_css" %}
+  <link rel="stylesheet" href="{% static "commons/compiled/error.css" %}">
+{% endblock %}
+
+{% block "body" %}
+    <div class="content">
+        <div class="row">
+            <div class="col-lg-7 col-lg-offset-4">
+                <h1>500 <small>Internal server error</small></h1>
+
+                <div class="msg">
+                    <p>
+                        Wow, it seems you just found a huge bug!<br />Don't worry, we have been warned and we will fix this as soon as possible.
+                    </p>
+                    <p>
+                       You can also <a href="{% url "contact" %}">contact us</a>, or go to the <a href="{% url "home" %}">home page</a> (well, if you can…).
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

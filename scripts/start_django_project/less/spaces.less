@@ -1,0 +1,34 @@
+.spaces (@index) when (@index > 0) {
+    .margin-top-@{index} {
+        margin-top: @index + 0px;
+    }
+
+    .margin-bottom-@{index} {
+        margin-bottom: @index + 0px;
+    }
+
+    .margin-left-@{index} {
+        margin-left: @index + 0px;
+    }
+
+    .margin-right-@{index} {
+        margin-right: @index + 0px;
+    }
+
+    .spaces(@index - 5);
+}
+
+.spaces (0) {}
+.spaces (30);
+
+.space-li-10 {
+    & > li {
+        margin-top: 10px;
+    }
+}
+
+.space-li-clean-first {
+    & > li:first-child {
+        margin-top: 0px !important;
+    }
+}

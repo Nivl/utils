@@ -1,0 +1,73 @@
+.remove-selection() {
+    cursor: default;
+
+    &::selection {
+        background-color: transparent;
+        color: inherit;
+    }
+}
+
+.transition-delay(@value) {
+    -webkit-transition-delay: @value;
+    -moz-transition-delay: @value;
+    -o-transition-delay: @value;
+    -ms-transition-delay: @value;
+    transition-delay: @value;
+}
+
+.transform-style(@value) {
+    -webkit-transform-style: @value;
+    -moz-transform-style: @value;
+    -o-transform-style: @value;
+    -ms-transform-style: @value;
+    transform-style: @value;
+}
+
+.transform-origin(@value) {
+    -webkit-transform-origin: @value;
+    -moz-transform-origin: @value;
+    -o-transform-origin: @value;
+    -ms-transform-origin: @value;
+    transform-origin: @value;
+}
+
+.perspective(@value) {
+    -webkit-perspective: @value;
+    -moz-perspective: @value;
+    -o-perspective: @value;
+    -ms-perspective: @value;
+    perspective: @value;
+}
+
+.transform(@arg) {
+    -webkit-transform: @arg;
+    -moz-transform: @arg;
+    -o-transform: @arg;
+    -ms-transform: @arg;
+    transform: @arg;
+}
+
+.make-col-all(@size) {
+    .make-xs-column(@size);
+    .make-sm-column(@size);
+    .make-md-column(@size);
+    .make-lg-column(@size);
+}
+
+.make-col-all-offset(@size) {
+    .make-sm-column-offset(@size);
+    .make-md-column-offset(@size);
+    .make-lg-column-offset(@size);
+}
+
+.make-col-no-phone(@size) {
+    .make-sm-column(@size);
+    .make-md-column(@size);
+    .make-lg-column(@size);
+}
+
+.make-col-no-phone-offset(@size) {
+    .make-sm-column-offset(@size);
+    .make-md-column-offset(@size);
+    .make-lg-column-offset(@size);
+}

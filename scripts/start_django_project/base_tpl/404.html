@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block "title" %}404 - Page not found{% endblock %}
+
+{% block "local_css" %}
+  <link rel="stylesheet" href="{% static "commons/compiled/error.css" %}">
+{% endblock %}
+
+{% block "body" %}
+    <div class="content">
+        <div class="row">
+            <div class="col-lg-7 col-lg-offset-4">
+                <h1>404 <small>Page not found</small></h1>
+
+                <div class="msg">
+                    <p>
+                        Sorry but this page no longer exists (or has never existed).
+                    </p>
+                    <p>
+                        You can go <a href="#" onClick="javascript: history.go(-1); return false;">back</a>, go to the <a href="{% url "home" %}">home page</a>, or <a href="{% url "contact" %}">contact us</a>.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

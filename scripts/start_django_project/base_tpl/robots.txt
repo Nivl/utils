@@ -1,0 +1,4 @@
+User-agent: bnf.fr_bot
+Disallow: /
+
+Sitemap: http://{{ DOMAIN_NAME }}{% url 'sitemap' %}
