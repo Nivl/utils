@@ -85,6 +85,12 @@ function start_django_project() {
     mv settings.py settings/commons.py
     cp $script_path/${FUNCNAME[0]}/settings/*.py settings
     cp $script_path/${FUNCNAME[0]}/main/*.py .
+    # Update urls.py
+    # Enable the admin
+    sed -e 's|# from|from|' -e 's|# admin|admin|' -e "s|# url(r'^admin/'|url(r'^admin/'|" urls.py > urls.py.new
+    # Add the proper import (needed by urls.py,part)
+    sed -e '1 a\from commons.views import TexplainView' -e '1 a\from django.views.generic.base import RedirectView' urls.py.new > urls.py
+    cat $script_path/${FUNCNAME[0]}/main/urls.py.part >> urls.py
 
     mkdir -p static_files/vendors/bootstrap
     mkdir -p static_files/static/commons/{css,fonts,img,js}
@@ -119,6 +125,8 @@ function start_django_project() {
     cp font/* $font_path
     cd ${tmp_path}/bootstrap
     sed 's|"glyphicons.less"|"font-awesome/font-awesome.less"|' less/bootstrap.less > ${bootstrap_path}/less/bootstrap.less
+
+
 
 
     if [ $# -eq 2 ] && [ -z $2 ]; then

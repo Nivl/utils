@@ -1,0 +1,28 @@
+
+
+urlpatterns += patterns(
+    'django.contrib.sitemaps.views',
+    url(r'^sitemap\.xml$', 'sitemap', {'sitemaps': sitemaps}, name="sitemap"),
+
+    url(r'^robots.txt$', TexplainView.as_view(template_name='robots.txt')),
+    url(r'^humans.txt$', TexplainView.as_view(template_name='humans.txt')),
+
+    url(r'^favicon.ico$', RedirectView.as_view(
+            url='%s/commons/img/favicon.ico' % settings.STATIC_URL
+            )),
+    url(r'^apple-touch-icon-precomposed.png$', RedirectView.as_view(
+            url='%s/commons/img/apple-touch-icon-precomposed.png' % settings.STATIC_URL
+            )),
+    url(r'^apple-touch-icon.png$', RedirectView.as_view(
+            url='%s/commons/img/apple-touch-icon.png' % settings.STATIC_URL
+            )),
+)
+
+js_info_dict = {
+    'packages': ('??PAKAGE_NAME??'),
+}
+
+urlpatterns += patterns(
+    '',
+    (r'^jsi18n/$', 'django.views.i18n.javascript_catalog', js_info_dict),
+)
