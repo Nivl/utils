@@ -115,8 +115,11 @@ function start_django_project() {
     unzip font-awesome.zip
     cd font-awesome
     cp -rf less ${bootstrap_path}/less/font-awesome
-    sed 's|"../font"|"../../commons/fonts"|' less/variables.less > ${bootstrap_path}/less/font-awesomevariables.less
+    sed 's|"../font"|"../../commons/fonts"|' less/variables.less > ${bootstrap_path}/less/variables.less
     cp font/* $font_path
+    cd ${tmp_path}/bootstrap
+    sed 's|"glyphicons.less"|"font-awesome/font-awesome.less"|' less/bootstrap.less > ${bootstrap_path}/less/bootstrap.less
+
 
     if [ $# -eq 2 ] && [ -z $2 ]; then
         cd $dest_path
