@@ -68,7 +68,7 @@ function start_django_project() {
 
     mkvirtualenv $project_name --python=`command -v python2.7`
     workon $project_name
-    pip install django #django-bootstrap-form django-pipeline South akismet cssmin django.js pytz==2013d hamlpy PIL MySQL-python johnny-cache
+    pip install django #django-bootstrap-form django-pipeline South akismet cssmin django-js-utils==0.0.5dev pytz==2013d hamlpy PIL MySQL-python johnny-cache
     if [ $? -ne 0 ]; then
        put_error "An error occured when installing python packages."
        return 1
@@ -87,9 +87,11 @@ function start_django_project() {
     cp $script_path/${FUNCNAME[0]}/main/*.py .
     # Update urls.py
     # Enable the admin
-    sed -e 's|# from|from|' -e 's|# admin|admin|' -e "s|# url(r'^admin/'|url(r'^admin/'|" urls.py > urls.py.new
+    sed -e 's|# from|from|' -e 's|# admin|admin|' -e "s|# url(r'^admin/'|url(r'^admin/'|" urls.py > urls.py.new && mv urls.py.new urls.py
+    # Add django-js-utils
+    sed "$ i\    url(r'^jsurls.js$', 'django_js_utils.views.jsurls', {}, 'jsurls')," urls.py > urls.py.new && mv urls.py.new urls.py
     # Add the proper import (needed by urls.py,part)
-    sed -e '1 a\from commons.views import TexplainView' -e '1 a\from django.views.generic.base import RedirectView' urls.py.new > urls.py
+    sed -e '1 a\from commons.views import TexplainView' -e '1 a\from django.views.generic.base import RedirectView' urls.py > urls.py.new && mv urls.py.new urls.py
     cat $script_path/${FUNCNAME[0]}/main/urls.py.part >> urls.py
 
     mkdir -p static_files/vendors/bootstrap
@@ -125,9 +127,6 @@ function start_django_project() {
     cp font/* $font_path
     cd ${tmp_path}/bootstrap
     sed 's|"glyphicons.less"|"font-awesome/font-awesome.less"|' less/bootstrap.less > ${bootstrap_path}/less/bootstrap.less
-
-
-
 
     if [ $# -eq 2 ] && [ -z $2 ]; then
         cd $dest_path
