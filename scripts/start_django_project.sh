@@ -93,6 +93,7 @@ function start_django_project() {
     # Add the proper import (needed by urls.py,part)
     sed -e '1 a\from commons.views import TexplainView' -e '1 a\from django.views.generic.base import RedirectView' urls.py > urls.py.new && mv urls.py.new urls.py
     cat $script_path/${FUNCNAME[0]}/main/urls.py.part >> urls.py
+    sed "s|??PAKAGE_NAME??|$project_name|" urls.py > urls.py.tmp && mv urls.py.tmp urls.py
 
     mkdir -p static_files/vendors/bootstrap
     mkdir -p static_files/static/commons/{css,fonts,img,js}
