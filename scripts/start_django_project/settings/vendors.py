@@ -35,12 +35,19 @@ PIPELINE_LESS_ARGUMENTS = '-x'
 STATICFILES_STORAGE = 'pipeline.storage.PipelineCachedStorage'
 
 PIPELINE_JS = {
-    'assets': {'source_filenames': ('bootstrap/js/bootstrap.min.js',
+    'assets': {'source_filenames': ('django_js_utils.js',
+                                    'js/*.js',
+                                    'bootstrap/js/bootstrap.min.js',
                                     ),
                'output_filename': 'commons/compiled/assets.js',
                },
 
-    'main': {'source_filenames': ('commons/js/*.js',
+    'main': {'source_filenames': ('commons/js/app/misc/utils/*.js',
+                                  'commons/js/app/misc/funcs/*.js',
+                                  'commons/js/app/misc/reload.js',
+
+                                  'commons/js/app/*.js',
+
                                   ),
              'output_filename': 'commons/compiled/scripts.js',
              },
@@ -54,7 +61,7 @@ PIPELINE_CSS = {
                },
 
     'main': {'source_filenames': ('commons/css/app/main.less',
-                                  'commons/css/responsive/main-responsive.less',
+                                  'commons/css/app/main-responsive.less',
                                   ),
              'output_filename': 'commons/compiled/styles.css',
              'variant': 'datauri',

@@ -104,6 +104,7 @@ function start_django_project() {
     mkdir -p static_files/static/commons/{css,fonts,img,js}
     cp $script_path/${FUNCNAME[0]}/fonts/* static_files/static/commons/fonts/
     cp $script_path/${FUNCNAME[0]}/less/* static_files/static/commons/css/app/
+    cp -rf $script_path/${FUNCNAME[0]}/js/* static_files/static/commons/js/
 
     mkdir templates
     cp $script_path/${FUNCNAME[0]}/base_tpl/* templates
