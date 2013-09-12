@@ -1,4 +1,3 @@
-from django.template import add_to_builtins
 from commons import *
 
 #
@@ -101,17 +100,11 @@ else:
 
 
 #
-# djangojs
-#
-
-add_to_builtins('djangojs.templatetags.js')
-
-#
 # Others
 #
 
 INSTALLED_APPS += (
     'bootstrapform',
-    'djangojs',
+    'django_js_utils',
     'south',
 )
