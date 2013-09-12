@@ -50,6 +50,17 @@ function start_django_project() {
     local script_path="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
     local tmp_path="/tmp/start_project/${RANDOM}-$project_name"
 
+
+    if [ -d "$dest_path" ]; then
+        put_error "The directory $dest_path already exists."
+        return 1
+    fi
+
+    if [ ! -z `lsvirtualenv | grep $project_name` ]; then
+        put_error "The virtual environement $project_name already exists."
+        return 1
+    fi
+
     mkdir -p $dest_path >/dev/null 2>&1
     if [ $? -ne 0 ]; then
        put_error "$dest_path not writable"
