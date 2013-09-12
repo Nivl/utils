@@ -77,7 +77,7 @@ function start_django_project() {
     put_info "Setting up django"
     django-admin.py startproject $project_name
     cd $dest_path
-    cp -rf $script_path/${FUNCNAME[0]}/public/ .
+    cp -rf ${script_path}/${FUNCNAME[0]}/public/ .
     cd public/httpd
     find . -type f | xargs sed -i "s/??PROJECT_NAME??/$project_name/g"
 
@@ -136,12 +136,14 @@ function start_django_project() {
     cd ${tmp_path}/bootstrap
     sed 's|"glyphicons.less"|"font-awesome/font-awesome.less"|' less/bootstrap.less > ${bootstrap_path}/less/bootstrap.less
 
-    if [ $# -eq 2 ] && [ -z $2 ]; then
+    if [ ! -z $remote_path ]; then
         cd $dest_path
         put_info "Setting up the git repository"
         git init
-        git add README.md requirements.txt $project_name
+        git add README.md requirements.txt $project_name public
         git remote add origin $remote_path
+        git commit -m "First commit"
+        git push -u origin master
 
         if [ $? -ne 0 ]; then
            put_error "An error occured when creating and pushing the git repository."
