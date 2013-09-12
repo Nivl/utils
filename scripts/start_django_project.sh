@@ -68,7 +68,7 @@ function start_django_project() {
 
     mkvirtualenv $project_name --python=`command -v python2.7`
     workon $project_name
-    pip install django #django-js-utils==0.0.5dev django-bootstrap-form django-pipeline South akismet cssmin pytz==2013d hamlpy PIL MySQL-python johnny-cache
+    pip install django django-js-utils==0.0.5dev django-bootstrap-form django-pipeline South akismet cssmin pytz==2013d hamlpy PIL MySQL-python johnny-cache
     if [ $? -ne 0 ]; then
        put_error "An error occured when installing python packages."
        return 1
