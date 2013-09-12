@@ -64,7 +64,7 @@ function start_django_project() {
 
     cd $dest_path
     put_info "Setting up the environment"
-    touch README.md requirements.txt
+    touch README.md
 
     mkvirtualenv $project_name --python=`command -v python2.7`
     workon $project_name
@@ -73,6 +73,7 @@ function start_django_project() {
        put_error "An error occured when installing python packages."
        return 1
     fi
+    pip freeze > requirements.txt
 
     put_info "Setting up django"
     django-admin.py startproject $project_name
