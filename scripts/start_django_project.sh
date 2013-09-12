@@ -102,7 +102,7 @@ function start_django_project() {
     sed "s|??PROJECT_NAME??|$project_name|" urls.py > urls.py.tmp && mv urls.py.tmp urls.py
 
     mkdir -p static_files/vendors/bootstrap
-    mkdir -p static_files/static/commons/{css,fonts,img,js}
+    mkdir -p static_files/static/commons/{css/app,fonts,img,js}
     cp $script_path/${FUNCNAME[0]}/fonts/* static_files/static/commons/fonts/
     cp $script_path/${FUNCNAME[0]}/less/* static_files/static/commons/css/app/
     cp -rf $script_path/${FUNCNAME[0]}/js/* static_files/static/commons/js/
