@@ -86,17 +86,18 @@ function start_django_project() {
     cp -rf ${script_path}/${FUNCNAME[0]}/apps/commons .
 
     cd $project_name
+    rm -f settings.py
     mkdir -p settings
-    mv settings.py settings/commons.py
     cp ${script_path}/${FUNCNAME[0]}/settings/*.py settings
+    find settings -type f | xargs sed -i "s/??PROJECT_NAME??/$project_name/g"
     cp ${script_path}/${FUNCNAME[0]}/main/*.py .
     # Update urls.py
     # Enable the admin
-    sed -e 's|# from|from|' -e 's|# admin|admin|' -e "s|# url(r'^admin/'|url(r'^admin/'|" urls.py > urls.py.new && mv urls.py.new urls.py
+    sed -e 's|# from|from|' -e 's|# admin|admin|' -e "s|# url(r'^admin/'|url(r'^admin/'|" urls.py > urls.py.tmp && mv urls.py.tmp urls.py
     # Add django-js-utils
-    sed "$ i\    url(r'^jsurls.js$', 'django_js_utils.views.jsurls', {}, 'jsurls')," urls.py > urls.py.new && mv urls.py.new urls.py
+    sed "$ i\    url(r'^jsurls.js$', 'django_js_utils.views.jsurls', {}, 'jsurls')," urls.py > urls.py.tmp && mv urls.py.tmp urls.py
     # Add the proper import (needed by urls.py,part)
-    sed -e '1 a\from commons.views import TexplainView' -e '1 a\from django.views.generic.base import RedirectView' urls.py > urls.py.new && mv urls.py.new urls.py
+    sed -e '1 a\from commons.views import TexplainView' -e '1 a\from django.views.generic.base import RedirectView' urls.py > urls.py.tmp && mv urls.py.tmp urls.py
     cat $script_path/${FUNCNAME[0]}/main/urls.py.part >> urls.py
     sed "s|??PROJECT_NAME??|$project_name|" urls.py > urls.py.tmp && mv urls.py.tmp urls.py
 

@@ -17,7 +17,7 @@ CACHES = {
                     )
 }
 
-JOHNNY_MIDDLEWARE_KEY_PREFIX = 'jc_nivls_website'
+JOHNNY_MIDDLEWARE_KEY_PREFIX = 'jc_??PROJECT_NAME??'
 
 #
 # Django pipeline
