@@ -107,7 +107,7 @@ function start_django_project() {
     cp -rf $script_path/${FUNCNAME[0]}/js/* static_files/static/commons/js/
 
     mkdir templates
-    cp $script_path/${FUNCNAME[0]}/base_tpl/* templates
+    cp -rf $script_path/${FUNCNAME[0]}/base_tpl/* templates
 
     put_info "Installing twitter bootstrap"
     local bootstrap_path="$dest_path/$project_name/$project_name/static_files/vendors/bootstrap"

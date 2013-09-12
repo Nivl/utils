@@ -1,0 +1,19 @@
+- extends "base.haml"
+- load compressed staticfiles i18n
+
+- block "local_css"
+    - compressed_css 'assets'
+    - compressed_css 'main'
+
+- block "body"
+    %header
+
+
+    .container
+        .row
+            .col-lg-12
+                #body-content
+                    - block "body-content"
+
+    - block "footer"
+        - include "inc/footer.haml"
