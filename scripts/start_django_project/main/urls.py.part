@@ -1,4 +1,5 @@
 
+sitemaps = dict() # Add your imported sitemaps here
 
 urlpatterns += patterns(
     'django.contrib.sitemaps.views',
