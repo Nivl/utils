@@ -109,7 +109,7 @@ function start_django_project() {
     # Add django-js-utils
     sed "$ i\    url(r'^jsurls.js$', 'django_js_utils.views.jsurls', {}, 'jsurls')," urls.py > urls.py.tmp && mv urls.py.tmp urls.py
     # Add the proper import (needed by urls.py,part)
-    sed -e '1 a\from commons.views import TexplainView' -e '1 a\from django.views.generic.base import RedirectView' urls.py > urls.py.tmp && mv urls.py.tmp urls.py
+    sed -e '1 a\from commons.views import TexplainView' -e '1 a\from django.views.generic.base import RedirectView' -e '1 a\from django.conf import settings' urls.py > urls.py.tmp && mv urls.py.tmp urls.py
     cat $script_path/${FUNCNAME[0]}/main/urls.py.part >> urls.py
     sed "s|??PROJECT_NAME??|$project_name|" urls.py > urls.py.tmp && mv urls.py.tmp urls.py
 
