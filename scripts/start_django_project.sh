@@ -135,7 +135,6 @@ function start_django_project() {
     rm -rf tests
     cd ..
     npm install
-    grunt dist
 
     put_info "Installing font-awesome"
     cd $tmp_path
@@ -147,6 +146,11 @@ function start_django_project() {
     cp font/* $font_path
     cd ${tmp_path}/bootstrap
     sed 's|"glyphicons.less"|"font-awesome/font-awesome.less"|' less/bootstrap.less > ${bootstrap_path}/less/bootstrap.less
+
+    cd ${bootstrap_path}
+    grunt dist
+    cd ${dest_path}/${project_name}
+    echo 'yes' | python manage.py collectstatic
 
     if [ ! -z $remote_path ]; then
         cd $dest_path
