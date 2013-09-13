@@ -5,4 +5,5 @@ SITE_ID = 1
 
 INSTALLED_APPS = INSTALLED_APPS + (
     'commons',
+    'logger',
 )
