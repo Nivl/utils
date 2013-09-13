@@ -171,6 +171,9 @@ function start_django_project() {
     fi
 
     cd $dest_path
-    put_info "You can now edit the configuration files"
+    put_info "Done. This is what you need to do now"
+    put_info "* Edit private.py to set ALL the needed variables (don't forget DOMAIN_NAME otherwise you won't be able to connect to the administration)"
+    put_info "* Execute syncdb and convert logger to south (python manage.py convert_to_south logger)"
+    put_info "* Add a favicon"
     return 0
 }
