@@ -89,7 +89,7 @@ function start_django_project() {
     put_info "Setting up django"
     django-admin.py startproject $project_name
     cd $dest_path
-    cp -rf ${script_path}/${FUNCNAME[0]}/public/ .
+    cp -rf ${script_path}/${FUNCNAME[0]}/root/* .
     cd public/httpd
     find . -type f | xargs sed -i "s/??PROJECT_NAME??/$project_name/g"
 

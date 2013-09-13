@@ -1,0 +1,10 @@
+*.pyc
+/public/media/
+/public/static/
+.directory
+private.py
+/fixtures/
+*.json
+TODO
+*.sublime-*
+node_modules/
