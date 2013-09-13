@@ -136,6 +136,8 @@ function start_django_project() {
     cd ..
     npm install
 
+    sed 's|dist/|dist/static/bootstrap/|' Gruntfile.js > Gruntfile.js.tmp && mv Gruntfile.js.tmp Gruntfile.js
+
     put_info "Installing font-awesome"
     cd $tmp_path
     wget http://fontawesome.io/assets/font-awesome.zip
