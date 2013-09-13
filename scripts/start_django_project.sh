@@ -153,6 +153,8 @@ function start_django_project() {
     grunt dist
     cd ${dest_path}/${project_name}
     echo 'yes' | python manage.py collectstatic
+    echo 'yes' | python manage.py collectstatic
+    echo 'yes' | python manage.py collectstatic
 
     if [ ! -z $remote_path ]; then
         cd $dest_path
