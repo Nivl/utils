@@ -41,11 +41,11 @@ PIPELINE_JS = {
                'output_filename': 'commons/compiled/assets.js',
                },
 
-    'main': {'source_filenames': ('commons/js/app/misc/utils/*.js',
-                                  'commons/js/app/misc/funcs/*.js',
-                                  'commons/js/app/misc/reload.js',
+    'main': {'source_filenames': ('commons/js/misc/utils/*.js',
+                                  'commons/js/misc/funcs/*.js',
+                                  'commons/js/misc/reload.js',
 
-                                  'commons/js/app/*.js',
+                                  'commons/js/*.js',
 
                                   ),
              'output_filename': 'commons/compiled/scripts.js',
