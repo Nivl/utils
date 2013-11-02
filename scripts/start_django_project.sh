@@ -95,7 +95,7 @@ function start_django_project() {
 
     cd ${dest_path}/${project_name}
     mkdir -p locale
-    cp -rf ${script_path}/${FUNCNAME[0]}/apps/commons .
+    cp -rf ${script_path}/${FUNCNAME[0]}/apps/* .
 
     cd $project_name
     rm -f settings.py
