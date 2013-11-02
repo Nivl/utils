@@ -7,7 +7,7 @@
 
 function put_info() {
     echo -en "\033[01;34m"
-    echo $@
+    echo '$@'
     echo -en "\033[00m"
     return 0
 }
