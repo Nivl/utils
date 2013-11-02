@@ -20,7 +20,7 @@ ADMIN_ID = 1
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'nivl',
+        'NAME': '',
         'USER': 'root',
         'PASSWORD': '',
         'HOST': '',
