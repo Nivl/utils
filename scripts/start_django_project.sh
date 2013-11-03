@@ -140,12 +140,12 @@ function start_django_project() {
 
     put_info "Installing font-awesome"
     cd $tmp_path
-    wget http://fontawesome.io/assets/font-awesome.zip
-    unzip font-awesome.zip
-    cd font-awesome
+    wget https://github.com/FortAwesome/Font-Awesome/archive/master.zip
+    unzip master.zip
+    cd Font-Awesome-master/
     cp -rf less ${bootstrap_path}/less/font-awesome
-    sed 's|"../font"|"../../commons/fonts"|' less/variables.less > ${bootstrap_path}/less/font-awesome/variables.less
-    cp font/* $font_path
+    sed 's|"../fonts"|"../../commons/fonts"|' less/variables.less > ${bootstrap_path}/less/font-awesome/variables.less
+    cp fonts/* $font_path
     cd ${tmp_path}/bootstrap
     sed 's|"glyphicons.less"|"font-awesome/font-awesome.less"|' less/bootstrap.less > ${bootstrap_path}/less/bootstrap.less
 
