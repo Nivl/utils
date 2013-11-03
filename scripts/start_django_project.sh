@@ -90,6 +90,7 @@ function start_django_project() {
     django-admin.py startproject $project_name
     cd $dest_path
     cp -rf ${script_path}/${FUNCNAME[0]}/root/* .
+    cp ${script_path}/${FUNCNAME[0]}/root/.gitignore .
     cd public/httpd
     find . -type f | xargs sed -i "s/??PROJECT_NAME??/$project_name/g"
 
