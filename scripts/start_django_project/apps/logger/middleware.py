@@ -1,5 +1,26 @@
-from django.middleware.common import _is_ignorable_404
+from django.conf import settings
 from models import Logger404
+
+
+def _is_ignorable_404(uri):
+    """
+    Returns True if a 404 at the given URL *shouldn't* notify the site managers.
+    """
+    if getattr(settings, 'IGNORABLE_404_STARTS', ()):
+        import warnings
+        warnings.warn('The IGNORABLE_404_STARTS setting has been deprecated '
+                      'in favor of IGNORABLE_404_URLS.', DeprecationWarning)
+        for start in settings.IGNORABLE_404_STARTS:
+            if uri.startswith(start):
+                return True
+    if getattr(settings, 'IGNORABLE_404_ENDS', ()):
+        import warnings
+        warnings.warn('The IGNORABLE_404_ENDS setting has been deprecated '
+                      'in favor of IGNORABLE_404_URLS.', DeprecationWarning)
+        for end in settings.IGNORABLE_404_ENDS:
+            if uri.endswith(end):
+                return True
+    return any(pattern.search(uri) for pattern in settings.IGNORABLE_404_URLS)
 
 
 class LoggerMiddleware():
