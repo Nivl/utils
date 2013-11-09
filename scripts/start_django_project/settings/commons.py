@@ -23,7 +23,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 #     'auth.user': lambda o: "/accounts/view/%s/" % o.username,
 # }
 
-DEFAULT_FILE_STORAGE = "commons.storage.UniqueFileSystemStorage"
+DEFAULT_FILE_STORAGE = "utils.storage.UniqueFileSystemStorage"
 
 ROOT_URLCONF = '??PROJECT_NAME??.urls'
 
@@ -70,6 +70,12 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'django.core.context_processors.tz',
     'django.contrib.messages.context_processors.messages',
     '??PROJECT_NAME??.context_processors.app',
+)
+
+# Used by vendors
+TEMPLATE_LOADERS = (
+    'django.template.loaders.filesystem.Loader',
+    'django.template.loaders.app_directories.Loader',
 )
 
 MIDDLEWARE_CLASSES = (
