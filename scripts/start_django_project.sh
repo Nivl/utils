@@ -105,8 +105,6 @@ function start_django_project() {
     find settings -type f | xargs sed -i "s/??PROJECT_NAME??/$project_name/g"
     cp ${script_path}/${FUNCNAME[0]}/main/*.py .
     # Update urls.py
-    # Enable the admin
-    sed -e 's|# from|from|' -e 's|# admin|admin|' -e "s|# url(r'^admin/'|url(r'^admin/'|" urls.py > urls.py.tmp && mv urls.py.tmp urls.py
     # Add django-js-utils
     sed "$ i\    url(r'^jsurls.js$', 'django_js_utils.views.jsurls', {}, 'jsurls')," urls.py > urls.py.tmp && mv urls.py.tmp urls.py
     # Add the proper import (needed by urls.py,part)

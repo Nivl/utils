@@ -4,20 +4,20 @@ from commons import *
 # Johnny cache
 #
 
-MIDDLEWARE_CLASSES = (
-    'johnny.middleware.LocalStoreClearMiddleware',
-    'johnny.middleware.QueryCacheMiddleware',
-) + MIDDLEWARE_CLASSES
+# MIDDLEWARE_CLASSES = (
+#     'johnny.middleware.LocalStoreClearMiddleware',
+#     'johnny.middleware.QueryCacheMiddleware',
+# ) + MIDDLEWARE_CLASSES
 
 
-CACHES = {
-    'default': dict(BACKEND='johnny.backends.memcached.MemcachedCache',
-                    LOCATION=['127.0.0.1:11211'],
-                    JOHNNY_CACHE=True,
-                    )
-}
+# CACHES = {
+#     'default': dict(BACKEND='johnny.backends.memcached.MemcachedCache',
+#                     LOCATION=['127.0.0.1:11211'],
+#                     JOHNNY_CACHE=True,
+#                     )
+# }
 
-JOHNNY_MIDDLEWARE_KEY_PREFIX = 'jc_??PROJECT_NAME??'
+# JOHNNY_MIDDLEWARE_KEY_PREFIX = 'jc_??PROJECT_NAME??'
 
 #
 # Django pipeline
