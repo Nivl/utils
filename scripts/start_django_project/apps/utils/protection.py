@@ -1,10 +1,8 @@
 from django.conf import settings
-from django.contrib.sites.models import Site
 import akismet
 
 
 def akismet_is_valid(request, data, user_email='', user_url=''):
-    current_site = Site.objects.get_current()
     data = data.encode('ascii', 'ignore')
     user_data = {'user_ip': request.META.get('REMOTE_ADDR'),
                  'user_agent':  request.META.get('HTTP_USER_AGENT'),
@@ -13,7 +11,7 @@ def akismet_is_valid(request, data, user_email='', user_url=''):
                  'comment_author_url':  user_url,
                  'comment_author_email':  user_email, }
 
-    domain = "http://" + current_site.domain + settings.DOMAIN_NAME
+    domain = "http://" + settings.DOMAIN_NAME
     key = settings.AKISMET_API_KEY
 
     try:

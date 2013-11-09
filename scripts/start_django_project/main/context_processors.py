@@ -1,5 +1,5 @@
-from django.contrib.sites.models import Site
+from django.conf import settings
 
 
 def app(context):
-    return {'DOMAIN_NAME': Site.objects.get_current().domain}
+    return {'DOMAIN_NAME': settings.DOMAIN_NAME}
